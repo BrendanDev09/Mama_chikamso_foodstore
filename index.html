@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Mama Chika.com</title>
+  <meta name="description" content="Mama Chikamso — Fresh Nigerian foodstuff delivered to your door." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/storage/emulated/0/Android/data/com.teejay.trebedit/files/TrebEdit user files/E COMMERCE /css/style.css" />
+</head>
+<body>
+
+  <!-- PRELOADER -->
+  <div id="preloader">
+    <div class="loader"></div>
+    <div class="loader-text">Mama Chikamso</div>
+  </div>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner container">
+      <div class="brand">
+        <div class="logo">Mama<br> Chikamso</div>
+        <div class="tag small"></div>
+      </div>
+
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#categories">Categories</a>
+        <a href="#shop">Shop</a>
+        <a href="order-history.html"> Orders</a>
+        <button id="cartBtn" class="icon-btn" title="Cart">🛒 <span id="cart-count">0</span></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main id="home">
+
+    <!-- HERO -->
+    <section class="hero container">
+      <div class="hero-grid">
+        <div class="hero-text">
+          <div class="kicker">Food Ingredients</div>
+          <h1> Mama Chikamso, Fresh Nigerian Foodstuff<br> Delivered Fast</h1>
+          <p class="lead">Save up to 50% on your first order. Handpicked, locally sourced ingredients delivered to your doorstep.</p>
+          <div class="cta-group">
+            <button class="btn btn-primary" id="orderNowBtn">Order Now</button>
+            <button class="btn btn-ghost" onclick="document.getElementById('categories').scrollIntoView({behavior:'smooth'})">Browse Categories</button>
+          </div>
+
+          <div class="metrics">
+            <div><strong>4.9</strong><div class="small">Customer Rating</div></div>
+            <div><strong>1k+</strong><div class="small">Orders Delivered</div></div>
+            <div><strong>24/7</strong><div class="small">Support</div></div>
+          </div>
+        </div>
+
+        <div class="hero-media">
+          <img src="spices.jpg">
+          <div class="hero-card">
+            <div class="hc-title"> Flavor Spices</div>
+            <div class="hc-sub">Sweet Chili Tamarind</div>
+            <div class="hc-row">
+              <div class="hc-price">₦1,200</div>
+              <button class="btn" onclick="addSample()">Shop Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROMO CARDS -->
+    <section class="promos container">
+      <div class="promo-grid">
+        <div class="promo-card">
+          <div class="promo-thumb" style="background-image:url('supreme.png')"></div>
+          <div class="promo-body">
+            <h4>Everyday Fresh & Clean</h4>
+            <p class="small">With our products</p>
+            <button class="btn-ghost small">Shop Now</button>
+          </div>
+        </div>
+
+        <div class="promo-card">
+          <div class="promo-thumb" style="background-image:url('break.jpg')"></div>
+          <div class="promo-body">
+            <h4>Make Your Breakfast</h4>
+            <p class="small">Healthy & Easy</p>
+            <button class="btn-ghost small">Shop Now</button>
+          </div>
+        </div>
+
+        <div class="promo-card">
+          <div class="promo-thumb" style="background-image:url('GG.png')"></div>
+          <div class="promo-body">
+            <h4>Ginger and Garlic</h4>
+            <p class="small">Online & Local</p>
+            <button class="btn-ghost small">Shop Now</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORIES -->
+    <section id="categories" class="categories container">
+      <h2 class="section-title">Our Categories</h2>
+      <div class="cats-grid" id="catsGrid">
+        <!-- categories populated by JS -->
+      </div>
+    </section>
+
+    <!-- LARGE PROMO -->
+    <section class="large-promo container">
+      <div class="promo-inner">
+        <div class="promo-left">
+          <div class="small" style="color:var(--orange-500)">Get Up To 30% Off</div>
+          <h3>Spice Manna Bright Tangy <span style="color:var(--orange-500)">Tamarind</span></h3>
+          <p class="small">Limited time offer on our signature spice blends — authentic, local flavors.</p>
+          <button class="btn btn-primary">Shop Now</button>
+        </div>
+        <div class="promo-right">
+          <img src="spicemana.png" alt="Promo">
+        </div>
+      </div>
+    </section>
+
+    <!-- TOP SELLER + PRODUCTS -->
+    <section id="shop" class="section container">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div>
+          <h2 class="section-title">Top Seller Of Month</h2>
+          <p class="small">Handpicked favorites our customers love</p>
+        </div>
+        <div class="small"><a href="#" onclick="alert('View all')">View All</a></div>
+      </div>
+
+      <div class="product-grid" id="productGrid">
+        <!-- products injected by JS -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- CART POPUP -->
+  <div id="cart-popup" class="cart-popup" aria-hidden="true">
+    <h3>Your Cart</h3>
+    <div class="cart-items-list" id="cartItemsList"></div>
+    <div class="cart-footer">
+      <p>Total: ₦<span id="cart-total-popup">0</span></p>
+      <button id="checkoutBtnPopup" class="btn btn-primary">Checkout</button>
+    </div>
+  </div>
+
+  <!-- SUCCESS & ERROR POPUPS -->
+  <div id="success-popup" aria-hidden="true">
+    <div class="popup-content">
+      <div class="checkmark">
+        <svg viewBox="0 0 52 52">
+            
+          <circle class="checkmark__circle" cx="26" cy="26" r="25"></circle>
+          <path class="checkmark__check" d="M14 27l7 7 16-16"></path>
+        </svg>
+      </div>
+      
+      
+      <h2>Order Successful!</h2>
+      <p>Your order has been placed successfully 🎉</p>
+    </div>
+  </div>
+
+  <div id="error-popup" aria-hidden="true">
+    <div class="popup-content error">
+      <div class="error-icon">
+        <svg viewBox="0 0 52 52">
+          <circle class="error__circle" cx="26" cy="26" r="25"></circle>
+          <path class="error__cross" d="M16 16l20 20M36 16L16 36"></path>
+        </svg>
+      </div>
+      <h2>Order Failed!</h2>
+      <p>Something went wrong. Please try again.</p>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div id="toast" class="toast" aria-hidden="true">Saved</div>
+  <div id="deliveryToast" class="toast" aria-hidden="true">✅ Order Delivered Successfully!</div>
+
+  <script src="script.js"></script>
+</body>
+</html>

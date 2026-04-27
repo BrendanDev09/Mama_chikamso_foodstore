@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>My Orders — Mama Chikamso</title>
+  <link rel="stylesheet" href="/storage/emulated/0/Android/data/com.teejay.trebedit/files/TrebEdit user files/E COMMERCE /css/style.css" />
+</head>
+<body>
+    <a href="/storage/emulated/0/Android/data/com.teejay.trebedit/files/TrebEdit user files/E COMMERCE /order-success.html">view success order</a>
+  <main class="orders-body">
+    <h2 class="orders-title">My Orders 📦</h2>
+    <div id="ordersList" class="orders-container"></div>
+
+    <!-- Order Details Modal -->
+    <div id="orderDetailsModal" class="modal">
+      <div class="modal-content">
+        <span class="closeDetails">&times;</span>
+        <h3>Order Details</h3>
+        <div id="orderItems"></div>
+        <h4 id="orderTotal"></h4>
+        <button id="deliverBtn" class="deliverBtn">Mark as Delivered ✅</button>
+      </div>
+    </div>
+
+    <div id="deliveryToast" class="toast">✅ Order Delivered Successfully!</div>
+  </main>
+
+  <script>
+    // small order-history logic using same key as script.js expects
+    function loadOrdersPage(){
+      const list = document.getElementById('ordersList');
+      const orders = JSON.parse(localStorage.getItem('mc_orders') || '[]');
+      if(!orders.length){ list.innerHTML = '<p class="empty-msg">You have no orders yet.</p>'; return; }
+      list.innerHTML = '';
+      orders.slice().reverse().forEach(order => {
+        const div = document.createElement('div');
+        div.className = 'order-card';
+        div.innerHTML = `
+          <h3>Order #${order.id}</h3>
+          <p><strong>Total:</strong> ₦${order.total}</p>
+          <p><strong>Status:</strong> <span class="status">${order.status}</span></p>
+          <p class="date">${order.date}</p>
+          <button class="viewOrderBtn" data-id="${order.id}">View Order Details</button>
+        `;
+        list.appendChild(div);
+      });
+
+      document.querySelectorAll('.viewOrderBtn').forEach(btn=>{
+        btn.addEventListener('click', ()=> {
+          const id = btn.dataset.id;
+          const orders = JSON.parse(localStorage.getItem('mc_orders') || '[]');
+          const order = orders.find(o=>o.id===id);
+          if(!order) return;
+          document.getElementById('orderItems').innerHTML = (order.items || []).map(it => `<div class="order-items"><p><strong>${it.name}</strong> x ${it.qty || 1} — ₦${(it.price * (it.qty||1)).toLocaleString()}</p></div>`).join('');
+          document.getElementById('orderTotal').textContent = `Total: ₦${order.total}`;
+          const modal = document.getElementById('orderDetailsModal');
+          modal.style.display='flex'; setTimeout(()=> modal.classList.add('show'),10);
+
+          // save current id to a data attribute
+          modal.dataset.currentOrder = id;
+        });
+      });
+    }
+
+    // deliver button handler
+    document.addEventListener('click', (e)=>{
+      if(e.target && e.target.id === 'deliverBtn'){
+        const modal = document.getElementById('orderDetailsModal');
+        const id = modal.dataset.currentOrder;
+        let orders = JSON.parse(localStorage.getItem('mc_orders') || '[]');
+        const idx = orders.findIndex(o=>o.id===id);
+        if(idx > -1){
+          orders[idx].status = 'Delivered ✅';
+          localStorage.setItem('mc_orders', JSON.stringify(orders));
+          // show toast
+          const dt = document.getElementById('deliveryToast'); dt.classList.add('show');
+          setTimeout(()=> dt.classList.remove('show'), 3000);
+          // close modal
+          modal.classList.remove('show'); setTimeout(()=> modal.style.display='none', 300);
+          loadOrdersPage();
+        }
+      }
+      if(e.target && e.target.classList && e.target.classList.contains('closeDetails')){
+        const modal = document.getElementById('orderDetailsModal');
+        modal.classList.remove('show'); setTimeout(()=> modal.style.display='none', 300);
+      }
+    });
+
+    // initialize
+    loadOrdersPage();
+  </script>
+</body>
+</html>

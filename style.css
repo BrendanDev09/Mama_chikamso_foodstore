@@ -1,0 +1,129 @@
+/* =========================
+   MAMA CHIKAMSO - STYLE
+   Fresh light green palette, responsive
+   ========================= */
+
+:root{
+  --green-600:#16a34a;
+  --orange-500:#fb923c;
+  --muted:#6b7280;
+  --bg:#fbfbfb;
+  --card:#fff;
+  --shadow:0 8px 24px rgba(16,24,40,0.06);
+  --max:1200px;
+}
+
+/* Base */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:10px;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:#111}
+.container{max-width:var(--max);margin:0 auto;padding:0 20px}
+
+/* Preloader */
+#preloader{position:fixed;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;background:#fff;z-index:8000}
+.loader{width:64px;height:64px;border-radius:50%;border:6px solid #f1f5f9;border-top:6px solid var(--green-600);animation:spin 1s linear infinite;margin-bottom:12px}
+.loader-text{font-weight:700;color:var(--green-600)}
+@keyframes spin{to{transform:rotate(360deg)}} 
+#preloader.fade-out{opacity:0;visibility:hidden;transition:opacity .5s ease}
+
+/* Header */
+header{background:#fff;border-bottom:1px solid #eef2f3;position:sticky;top:0;z-index:1000}
+.header-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{font-weight:800;color:var(--green-600);font-size:18px}
+.tag{font-size:12px;color:var(--muted)}
+.nav-links{display:flex;gap:14px;align-items:center}
+.nav-links a{color:var(--muted);text-decoration:none;font-weight:600}
+.icon-btn{background:transparent;border:0;cursor:pointer}
+#cart-count{background:#fff;color:var(--green-600);padding:2px 8px;border-radius:999px;margin-left:6px;font-weight:700}
+
+/* HERO */
+.hero{padding:48px 0;display:flex;align-items:center}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}
+.kicker{color:var(--orange-500);font-weight:700;font-size:13px}
+.hero h1{font-family:Playfair Display,serif;font-size:44px;margin:8px 0 12px}
+.lead{color:var(--muted);max-width:56ch}
+.cta-group{display:flex;gap:12px;margin-top:18px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:10px;border:0;cursor:pointer;font-weight:700}
+.btn-primary{background:var(--green-600);color:#fff}
+.btn-ghost{background:#fff;border:1px solid #eef2f3;color:#111}
+.hero-media{position:relative}
+.hero-media img{width:100%;height:360px;object-fit:cover;border-radius:14px;box-shadow:var(--shadow)}
+.hero-card{position:absolute;left:18px;bottom:-28px;background:var(--card);padding:12px;border-radius:12px;box-shadow:var(--shadow);width:260px}
+.hc-title{font-weight:700}
+.hc-sub{font-size:13px;color:var(--muted)}
+.hc-row{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+.hc-price{font-weight:800;color:var(--green-600)}
+
+/* PROMO CARDS */
+.promos{padding:28px 0}
+.promo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.promo-card{display:flex;background:#fff;border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
+.promo-thumb{width:140px;background-size:cover;background-position:center}
+.promo-body{padding:12px;display:flex;flex-direction:column;justify-content:center}
+
+/* CATEGORIES */
+.categories{padding:36px 0;text-align:center}
+.cats-grid{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:center}
+.cat{width:120px;background:#fff;border-radius:18px;padding:16px;text-align:center;box-shadow:var(--shadow)}
+.cat img{width:64px;height:64px;border-radius:999px;object-fit:cover;display:block;margin:0 auto 8px}
+
+/* LARGE PROMO */
+.large-promo{padding:36px 0}
+.promo-inner{display:flex;gap:20px;align-items:center;background:#fff;padding:20px;border-radius:14px;box-shadow:var(--shadow)}
+.promo-left{flex:1}
+.promo-right img{width:360px;height:220px;object-fit:cover;border-radius:10px}
+
+/* PRODUCTS */
+.section-title{text-align:center;font-size:22px;color:#0f172a;margin-bottom:6px}
+.product-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:18px}
+.product-card{background:var(--card);border-radius:12px;overflow:hidden;box-shadow:0 6px 18px rgba(16,24,40,0.04);transition:transform .3s ease,box-shadow .3s ease;position:relative}
+.product-card img{width:100%;height:180px;object-fit:cover;display:block}
+.product-card h3{margin:12px;font-size:1rem}
+.product-card .price{margin:0 12px 12px;color:var(--green-600);font-weight:800}
+.card-foot{display:flex;align-items:center;justify-content:space-between;padding:0 12px 14px}
+
+/* overlay */
+.product-card .overlay{position:absolute;inset:0;background:rgba(20,83,45,0.72);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .32s ease}
+.product-card:hover .overlay{opacity:1}
+
+/* product motion */
+.product-card{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.product-card.show{opacity:1;transform:none}
+
+/* CART POPUP */
+.cart-popup{position:fixed;top:70px;right:20px;width:320px;background:#fff;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,0.18);padding:14px;z-index:2000;transform:translateY(-12px);opacity:0;pointer-events:none;transition:all .25s ease}
+.cart-popup.active{transform:translateY(0);opacity:1;pointer-events:auto}
+.cart-items-list{max-height:260px;overflow:auto}
+
+/* MODAL common */
+.modal{position:fixed;inset:0;display:none;justify-content:center;align-items:flex-end;z-index:9000;opacity:0;transition:opacity .35s ease}
+.modal.show{display:flex;opacity:1;background:rgba(0,0,0,0.55);backdrop-filter:blur(2px)}
+.modal .modal-content{width:100%;max-width:480px;background:#fff;border-radius:18px 18px 0 0;padding:20px;box-shadow:0 -6px 30px rgba(0,0,0,0.18);transform:translateY(100%);animation:slideUp .42s ease forwards}
+@keyframes slideUp{from{transform:translateY(100%);opacity:0}to{transform:translateY(0);opacity:1}}
+.modal .closeModal{position:absolute;right:14px;top:10px;font-size:20px;cursor:pointer}
+
+/* popup content */
+.popup-content{background:rgba(255,255,255,0.86);backdrop-filter:blur(6px);padding:18px;border-radius:12px;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,0.18)}
+.checkmark{width:72px;height:72px;margin:0 auto 8px}
+.checkmark svg{width:72px;height:72px}
+.checkmark__circle{stroke:var(--green-600);stroke-width:3;stroke-dasharray:166;stroke-dashoffset:166;animation:stroke .6s forwards}
+.checkmark__check{stroke:var(--green-600);stroke-width:3;stroke-dasharray:48;stroke-dashoffset:48;animation:stroke .4s .7s forwards}
+@keyframes stroke{to{stroke-dashoffset:0}}
+
+/* Toast */
+.toast{position:fixed;bottom:-90px;left:50%;transform:translateX(-50%);background:var(--green-600);padding:12px 20px;color:#fff;border-radius:30px;box-shadow:0 6px 20px rgba(0,0,0,0.18);opacity:0;transition:all .45s ease;z-index:10000}
+.toast.show{bottom:30px;opacity:1}
+.toast.error{background:#dc2626}
+.toast.warning{background:#d97706}
+
+/* Orders / delivery toast */
+.orders-body{padding:20px}
+.orders-title{text-align:center;color:#065f46;margin-bottom:16px}
+.order-card{background:#fff;padding:14px;border-radius:12px;box-shadow:var(--shadow)}
+.deliverBtn{width:100%;padding:12px;background:var(--green-600);border:none;color:#fff;border-radius:10px;cursor:pointer}
+
+/* Responsive */
+@media(min-width:1100px){ .hero-grid{grid-template-columns:1fr 1fr} }
+@media(max-width:900px){ .hero-grid{grid-template-columns:1fr} .promo-grid{grid-template-columns:1fr} .promo-right img{width:100%} }
+@media(max-width:480px){ .hero h1{font-size:28px} .hero-media img{height:220px} .cats-grid{gap:10px} }
+.small{font-size:13px;color:var(--muted)}

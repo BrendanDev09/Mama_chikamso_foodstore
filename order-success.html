@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Order Success — Mama Chikamso</title>
+  <link rel="stylesheet" href="/storage/emulated/0/Android/data/com.teejay.trebedit/files/TrebEdit user files/E COMMERCE /css/style.css" />
+</head>
+<body>
+  <main class="order-success-body">
+    <div class="success-container">
+      <div class="checkmark">✅</div>
+      <h2>Order Placed Successfully!</h2>
+      <p class="order-message">Thank you for shopping with <strong>Mama Chikamso</strong>. Your items are on the way.</p>
+      <p class="order-number">Order No: <span id="orderID"></span></p>
+      <p class="delivery-time">Estimated Delivery: <strong>20 – 45 mins</strong></p>
+      <div class="success-buttons">
+        <a href="index.html" class="successBtn">Continue Shopping 🛍️</a>
+        <a href="order-history.html" class="successBtn outline">View My Orders 📦</a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Save order from cart into orders and clear cart
+    const orderID = "MC" + Math.floor(100000 + Math.random() * 900000);
+    document.getElementById('orderID').textContent = orderID;
+
+    const cart = JSON.parse(localStorage.getItem('mc_cart') || '[]');
+    const total = cart.reduce((s,i)=> s + (i.price * (i.qty||1)), 0);
+
+    const newOrder = {
+      id: orderID,
+      total: total,
+      status: 'On The Way',
+      date: new Date().toLocaleString(),
+      items: cart
+    };
+
+    const orders = JSON.parse(localStorage.getItem('mc_orders') || '[]');
+    orders.push(newOrder);
+    localStorage.setItem('mc_orders', JSON.stringify(orders));
+    localStorage.removeItem('mc_cart');
+  </script>
+</body>
+</html>
